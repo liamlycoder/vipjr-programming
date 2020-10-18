@@ -29,9 +29,18 @@ turtle.done()
 
 """螺旋红圆点"""
 import turtle
-p = turtle.Pen()
-for i in range(4):
-    pass
+b = turtle.Pen()
+b.pencolor('red')
+b.pensize(4)
+b.speed(0)
+for i in range(30):
+    b.penup()
+    b.fd(50+i*10)
+    b.pendown()
+    b.dot(1+i*2)
+    b.left(95)
+turtle.done()
+
 
 turtle.done()
 
