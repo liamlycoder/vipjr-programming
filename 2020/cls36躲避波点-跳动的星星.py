@@ -38,9 +38,22 @@ def tap(x, y):
     up_y = random.randint(100, 300)
     global count
     stars[count % len(stars)][1] += up_y
+    draw()
+    turtle.ontimer(move, 100)
+
+
+count = 0
+def tap(x, y):
+    up_y = 180
+    global count
+    stars[count % 5][1] += up_y
     count += 1
 
 
 move()
 turtle.onscreenclick(tap)
 turtle.done()
+
+
+
+
