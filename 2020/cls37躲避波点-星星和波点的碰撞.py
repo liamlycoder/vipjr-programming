@@ -35,7 +35,8 @@ def move():
     star_y -= 5
     global frequency
     for pos in balls:
-        if abs(pos[0] - star_x) < 40 and abs(pos[1] - star_y) < 40 or not inside(star_x, star_y):
+        if abs(pos[0] - star_x) < 40 and abs(pos[1] - star_y) < 40 \
+                or not inside(star_x, star_y):
             turtle.write("游戏失败", font=("Arial", 20, "bold"))
             return
         pos[0] -= 3
