@@ -58,10 +58,6 @@ def move():
     p.ontimer(move, 200)
 
 
-for body in snake:
-    draw(body["x"], body["y"], "red")
-
-
 def start(x, y):
     move()
 
