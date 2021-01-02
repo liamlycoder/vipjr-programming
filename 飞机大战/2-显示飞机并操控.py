@@ -17,11 +17,12 @@ class MainWindow:
         self.screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
         pygame.display.set_caption("飞机大战")
         plane_img = pygame.image.load(r"resources/image/shoot.png")
+        self.background = pygame.image.load('resources/image/background.png').convert()
         self.player = Player(plane_img, [200, 600])
 
     def show(self):
         while True:
-            self.screen.fill((255, 255, 255))
+            self.screen.blit(self.background, (0, 0))
             self.player.drawPlane(self.screen)
             pygame.display.update()
             self.checkPressed()
@@ -41,7 +42,7 @@ class MainWindow:
             self.player.moveRight()
 
 
-class Player():
+class Player(pygame.sprite.Sprite):
     def __init__(self, plane_img, init_pos):
         player_rect = pygame.Rect(0, 99, 102, 126)
         self.image = plane_img.subsurface(player_rect).convert_alpha()
