@@ -16,25 +16,21 @@ direction = {
 
 
 def changeRight():
-    global direction
     direction["x"] = 30
     direction["y"] = 0
 
 
 def changeLeft():
-    global direction
     direction["x"] = -30
     direction["y"] = 0
 
 
 def changeUp():
-    global direction
     direction["x"] = 0
     direction["y"] = 30
 
 
 def changeDown():
-    global direction
     direction["x"] = 0
     direction["y"] = -30
 
@@ -46,7 +42,6 @@ def draw(x, y, color):
 
 
 def move():
-    global snake
     p.clear()
     head = snake[-1].copy()
     head['x'] += direction["x"]
