@@ -64,17 +64,12 @@ class MainWindow(object):
 
     def iniMap(self):
         self.__map = []  # 重置地图
-        tmpRecords = []
         records = []
         for i in range(0, self.__iconKind):
             for j in range(0, 4):
-                tmpRecords.append(i)
+                records.append(i)
 
-        total = self.__gameSize * self.__gameSize
-        for x in range(0, total):
-            index = random.randint(0, total - x - 1)
-            records.append(tmpRecords[index])
-            tmpRecords.pop(index)
+        random.shuffle(records)
 
         # 一维数组转为二维，y为高维度
         for y in range(0, self.__gameSize):
