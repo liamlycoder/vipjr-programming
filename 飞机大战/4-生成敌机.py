@@ -68,7 +68,6 @@ class MainWindow:
             self.moveEnemy()
             self.enemies.draw(self.screen)
 
-
             pygame.display.update()
 
 
@@ -93,6 +92,7 @@ class MainWindow:
 
 class Player(pygame.sprite.Sprite):
     def __init__(self, plane_img, init_pos):
+        super(Player, self).__init__()
         player_rect = []  # 存储两张玩家图的尺寸
         player_rect.append(pygame.Rect(5, 99, 98, 126))
         player_rect.append(pygame.Rect(170, 360, 98, 126))
@@ -176,7 +176,6 @@ class Enemy(pygame.sprite.Sprite):
 
     def move(self):
         self.rect.top += self.speed
-
 
 
 if __name__ == '__main__':

@@ -65,7 +65,7 @@ class Enemy_Bullet(pygame.sprite.Sprite):
         self.image = bullet_img
         self.rect = bullet_img.get_rect()
         self.rect.midbottom = init_pos
-        self.speed = 10
+        self.speed = 2
 
     def move(self):
         self.rect.top += self.speed

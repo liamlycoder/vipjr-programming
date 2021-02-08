@@ -125,13 +125,13 @@ class MainWindow(object):
         for i in range(0, self.__gameSize):
             x1 = self.getX(i)
             x2 = self.getX(i + 1)
-            if point.x >= x1 and point.x < x2:
+            if x1 <= point.x < x2:
                 x = i
 
         for j in range(0, self.__gameSize):
             j1 = self.getY(j)
             j2 = self.getY(j + 1)
-            if point.y >= j1 and point.y < j2:
+            if j1 <= point.y < j2:
                 y = j
 
         return Point(x, y)
@@ -141,10 +141,7 @@ class MainWindow(object):
     '''
 
     def isEmptyInMap(self, point):
-        if self.__map[point.y][point.x] == self.EMPTY:
-            return True
-        else:
-            return False
+        return self.__map[point.y][point.x] == self.EMPTY
 
 
 class Point(object):
@@ -153,10 +150,7 @@ class Point(object):
         self.y = y
 
     def isUserful(self):
-        if self.x >= 0 and self.y >= 0:
-            return True
-        else:
-            return False
+        return self.x >= 0 and self.y >= 0
 
 
 m = MainWindow()
