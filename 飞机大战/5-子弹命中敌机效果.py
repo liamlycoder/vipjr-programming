@@ -1,6 +1,7 @@
 import pygame
 from pygame.locals import *
 import random
+from time import sleep
 
 SCREEN_WIDTH = 480
 SCREEN_HEIGHT = 800
@@ -18,13 +19,14 @@ class MainWindow:
         self.enemy_rect = pygame.Rect(534, 612, 57, 43)
         self.enemy_img = plane_img.subsurface(self.enemy_rect)
 
-        """新增内容2：把爆炸的图片传进去"""
+        """新增内容1：把爆炸的图片传进去"""
         self.enemies_down = pygame.sprite.Group()
         self.enemy_down_imgs = []
         self.enemy_down_imgs.append(plane_img.subsurface(pygame.Rect(267, 347, 57, 43)))
         self.enemy_down_imgs.append(plane_img.subsurface(pygame.Rect(873, 697, 57, 43)))
         self.enemy_down_imgs.append(plane_img.subsurface(pygame.Rect(267, 296, 57, 43)))
         self.enemy_down_imgs.append(plane_img.subsurface(pygame.Rect(930, 697, 57, 43)))
+
 
 
     def createEnemy(self, frequency):
@@ -52,6 +54,7 @@ class MainWindow:
                     exit()
             self.screen.fill((255, 255, 255))
             self.player.drawPlane(self.screen)
+            # self.screen.blit(self.enemy_down_imgs[3], (0, 0))
             shoot_frequency = self.checkPressed(shoot_frequency)
             self.player.moveBullet()
             self.player.drawBullets(self.screen)
@@ -60,7 +63,7 @@ class MainWindow:
             self.moveEnemy()
             self.enemies.draw(self.screen)
 
-            """新增内容5"""
+            """新增内容4"""
             self.judgeEnemy()
 
             pygame.display.update()
@@ -84,10 +87,10 @@ class MainWindow:
                 frequency = 0
         return frequency
 
-    """新增内容1"""
+    """新增内容3"""
     def judgeEnemy(self):
         # 将被击中的敌机对象添加到击毁敌机Group中，用来渲染击毁动画
-        down_dic = pygame.sprite.groupcollide(self.enemies, self.player.bullets, 1, 1)
+        down_dic = pygame.sprite.groupcollide(self.enemies, self.player.bullets, True, True)
         for enemy_down in down_dic:
             self.enemies_down.add(enemy_down)
         # 绘制敌机击毁动画
@@ -177,14 +180,14 @@ class Enemy(pygame.sprite.Sprite):
         self.rect = enemy_img.get_rect()
         self.rect.topleft = init_pos
         self.speed = 1
-        """新增内容3：记录爆炸顺序的变量以及爆炸效果绘制。记得加参数"""
+        """新增内容2：记录爆炸顺序的变量以及爆炸效果绘制。记得加参数"""
         self.down_imgs = enemy_down_imgs
-        self.down_index = 0
 
     def drawImg(self, scr):
-        for i in range(7):
-            scr.blit(self.down_imgs[self.down_index // 2], self.rect)
-            self.down_index += 1
+        for i in range(4):
+            scr.blit(self.down_imgs[i], self.rect)
+            sleep(0.02)
+            pygame.display.update()
 
     def move(self):
         self.rect.top += self.speed
